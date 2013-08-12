@@ -10,7 +10,7 @@ class ControllerBase
     @already_rendered = false
     @req = req
     @res = res
-    @params = route_params
+    @params = Params.new(@req, route_params)
   end
 
   def session
