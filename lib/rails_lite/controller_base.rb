@@ -5,6 +5,10 @@ require_relative 'session'
 class ControllerBase
   attr_reader :params
 
+  # def inspect
+  #   "Controller #{self.object_id}"
+  # end
+
   def initialize(req, res, route_params = {})
     raise "Double Render Error in initialize" if already_rendered?
     @already_rendered = false
@@ -50,5 +54,7 @@ class ControllerBase
    end
 
   def invoke_action(name)
+    self.send(name)
+    render(name) unless already_rendered?
   end
 end
