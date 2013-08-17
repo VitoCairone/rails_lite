@@ -1,8 +1,12 @@
 require 'erb'
 require_relative 'params'
 require_relative 'session'
+require_relative 'url_helper'
 
 class ControllerBase
+
+  include UrlHelper
+
   attr_reader :params
 
   # def inspect

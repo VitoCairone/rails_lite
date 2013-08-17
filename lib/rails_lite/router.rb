@@ -16,7 +16,7 @@ class Route
   def run(req, res)
     matchdata = pattern.match(req.path)
     route_params = {}
-    matchdata.names.each { |name| route_params[name] = matchdata[name] }
+    matchdata.names.each { |name| route_params[name.to_sym] = matchdata[name] }
 
     controller_class.new(req, res, route_params).invoke_action(self.action_name)
   end
@@ -24,6 +24,8 @@ end
 
 class Router
   attr_reader :routes
+
+  include UrlHelper
 
   def initialize
     @routes = []

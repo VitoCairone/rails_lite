@@ -18,7 +18,10 @@ class StatusController < ControllerBase
   end
 
   def show
-    render_content("status ##{params[:id]}", "text/text")
+    debugger
+    add_url_helper("foo")
+
+    render_content("status ##{params[:id]} + #{foo_url}", "text/text")
   end
 end
 
